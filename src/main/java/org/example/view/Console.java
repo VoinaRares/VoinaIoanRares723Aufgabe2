@@ -4,7 +4,6 @@ import org.example.controller.Controller;
 import org.example.model.Spieler;
 import org.example.model.Verein;
 
-import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
 import java.util.List;
 
