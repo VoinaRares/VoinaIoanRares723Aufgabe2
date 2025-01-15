@@ -5,6 +5,7 @@ import org.example.model.Verein;
 import org.example.repo.SpielerRepository;
 import org.example.repo.VereinRepository;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Controller {
@@ -24,6 +25,17 @@ public class Controller {
             }
         }
         return List.of();
+    }
+
+    public List<Spieler> sortByVerein(String name, int typ){
+        if(typ == 1){
+            List<Spieler> spielers = filterByVerein(name);
+            return spielers.stream().sorted(Comparator.comparing(Spieler::getMarktvert)).toList();
+        }
+        else{
+            List<Spieler> spielers = filterByVerein(name);
+            return spielers.stream().sorted(Comparator.comparing(Spieler::getMarktvert).reversed()).toList();
+        }
     }
 
     public Spieler readSpieler(String name){

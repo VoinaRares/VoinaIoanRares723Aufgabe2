@@ -25,6 +25,7 @@ public class Console {
             System.out.println("10 - Display all Vereins");
             System.out.println("11 - Filter Vereins by city");
             System.out.println("12 - Filter Spielers by Verein");
+            System.out.println("13 - Filter Spieler by Verein and Markt");
 
             System.out.println("0 - Exit");
 
@@ -137,6 +138,17 @@ public class Console {
                 for(Spieler s : controller.filterByVerein(name)) {
                     System.out.println(s);
 
+                }
+
+            } else if (choice == 13) {
+                System.out.println("Enter Verein Name: ");
+                String name = System.console().readLine();
+                System.out.println("Enter Sorting Algorithm: ");
+                System.out.println("1 - ASC");
+                System.out.println("2 - DESC");
+                int option = Integer.parseInt(System.console().readLine());
+                for(Spieler s : controller.sortByVerein(name, option)){
+                    System.out.println(s);
                 }
 
             } else if (choice == 0) {
