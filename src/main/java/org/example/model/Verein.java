@@ -19,6 +19,16 @@ public class Verein {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Verein{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", stadt='" + stadt + '\'' +
+                ", spielerList=" + spielerList +
+                '}';
+    }
+
     public void setId(int id) {
         this.id = id;
     }

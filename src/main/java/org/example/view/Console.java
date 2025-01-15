@@ -2,6 +2,11 @@ package org.example.view;
 
 import org.example.controller.Controller;
 import org.example.model.Spieler;
+import org.example.model.Verein;
+
+import javax.swing.text.html.HTMLDocument;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Console {
     Controller controller = new Controller();
@@ -13,11 +18,12 @@ public class Console {
             System.out.println("3 - Update Spieler");
             System.out.println("4 - Delete Spieler");
             System.out.println("5 - Display all Spielers");
-            System.out.println("6 - Read Kunde");
-            System.out.println("7 - Write Kunde");
-            System.out.println("8 - Update Kunde");
-            System.out.println("9 - Delete Kunde");
-            System.out.println("10 - Display all Kundes");
+            System.out.println("6 - Read Verein");
+            System.out.println("7 - Write Verein");
+            System.out.println("8 - Update Verein");
+            System.out.println("9 - Delete Verein");
+            System.out.println("10 - Display all Vereins");
+            System.out.println("11 - Filter Vereins by city");
 
             System.out.println("0 - Exit");
 
@@ -62,11 +68,76 @@ public class Console {
                    System.out.println(s);
                }
 
+            }else if (choice == 6) {
+                System.out.println("Enter id: ");
+                int id = Integer.parseInt(System.console().readLine());
+                System.out.println(controller.readVerein(id));
             }
+            else if (choice == 7) {
+                System.out.println("Enter id: ");
+                int id = Integer.parseInt(System.console().readLine());
+                System.out.println("Enter Name: ");
+                String name = System.console().readLine();
+                System.out.println("Enter Stadt: ");
+                String stadt = System.console().readLine();
+                List<Spieler> spielers = new ArrayList<>();
+                while(true){
+                    System.out.println(controller.getAllSpielers());
+                    System.out.println("0 - Exit");
+                    System.out.println("Enter Name: ");
+                    String spielerName = System.console().readLine();
+                    if(spielerName.equals("0")){
+                        break;
+                    }
+                    spielers.add(controller.readSpieler(spielerName));
+                }
+                controller.createVerein(new Verein(id, name, stadt, spielers));
 
+            }
+            else if (choice == 8) {
+                System.out.println("Enter id: ");
+                int id = Integer.parseInt(System.console().readLine());
+                System.out.println("Enter Name: ");
+                String name = System.console().readLine();
+                System.out.println("Enter Stadt: ");
+                String stadt = System.console().readLine();
+                List<Spieler> spielers = new ArrayList<>();
+                while(true){
+                    System.out.println(controller.getAllSpielers());
+                    System.out.println("0 - Exit");
+                    System.out.println("Enter Name: ");
+                    String spielerName = System.console().readLine();
+                    if(spielerName.equals("0")){
+                        break;
+                    }
+                    spielers.add(controller.readSpieler(spielerName));
+                }
+                controller.updateVerein(new Verein(id, name, stadt, spielers));
+            }
+            else if (choice == 9) {
+                System.out.println("Enter id: ");
+                int id = Integer.parseInt(System.console().readLine());
+                controller.deleteVerein(id);
+            }
+            else if (choice == 10) {
+                for(Verein v : controller.getAllVereins()) {
+                    System.out.println(v);
+                }
+            } else if (choice == 11) {
+                System.out.println("Enter Stadt: ");
+                String city = System.console().readLine();
+                for(Verein v : controller.filterByCity(city)) {
+                    System.out.println(v);
+                }
 
+            } else if (choice == 12) {
+                System.out.println("Enter Verein Name: ");
+                String name = System.console().readLine();
+                for(Spieler s : controller.filterByVerein(name)) {
+                    System.out.println(s);
+                }
 
-            if(choice == 0) {
+            } else if (choice == 0) {
                 break;
             }
         }
