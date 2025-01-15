@@ -24,6 +24,7 @@ public class Console {
             System.out.println("9 - Delete Verein");
             System.out.println("10 - Display all Vereins");
             System.out.println("11 - Filter Vereins by city");
+            System.out.println("12 - Filter Spielers by Verein");
 
             System.out.println("0 - Exit");
 
@@ -135,6 +136,7 @@ public class Console {
                 String name = System.console().readLine();
                 for(Spieler s : controller.filterByVerein(name)) {
                     System.out.println(s);
+
                 }
 
             } else if (choice == 0) {
